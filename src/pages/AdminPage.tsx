@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Project } from '../types';
-import { fetchProjects, createProject, updateProject, deleteProject, resetProjects } from '../api/projects';
+import { fetchProjects, createProject, updateProject, deleteProject, resetProjects, checkBackendHealth } from '../api/projects';
 import { INITIAL_PROJECTS } from '../data/projects';
 import {
   Plus, Pencil, Trash2, Save, X, ArrowLeft, Upload, Image as ImageIcon,
@@ -336,8 +336,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate }) => {
       const data = await fetchProjects();
       setProjects(data);
 
-      fetch('/api/health')
-        .then(res => res.json())
+      checkBackendHealth()
         .then(health => {
           if (health.provider) setDbProvider(health.provider);
         })
@@ -623,20 +622,27 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate }) => {
                 </div>
 
                 {/* Featured toggle */}
-                <div className="flex items-center gap-3">
+                <div className="flex items-center justify-between p-3 rounded-lg border border-white/10 bg-white/[0.02]">
+                  <div className="space-y-0.5">
+                    <label className="text-xs font-mono uppercase tracking-wider text-neutral-300 flex items-center gap-1.5">
+                      <Star className={`w-3.5 h-3.5 ${editingProject.featured ? 'text-amber-400 fill-amber-400' : 'text-neutral-500'}`} />
+                      Feature on Landing Page
+                    </label>
+                    <p className="text-[10px] text-neutral-500 font-mono">
+                      {editingProject.featured ? '★ Pin this project to "My Latest Builds" on home page' : '☆ Not pinned to home page'}
+                    </p>
+                  </div>
                   <button
                     type="button"
                     onClick={() => updateField('featured', !editingProject.featured)}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-md text-xs font-mono transition-all cursor-pointer ${
+                    className={`px-3 py-1.5 rounded text-xs font-mono transition-all cursor-pointer ${
                       editingProject.featured
-                        ? 'bg-amber-500/10 border border-amber-500/20 text-amber-400'
-                        : 'bg-white/5 border border-white/10 text-neutral-500'
+                        ? 'bg-amber-500/20 border border-amber-500/40 text-amber-300 font-semibold'
+                        : 'bg-white/5 border border-white/10 text-neutral-400 hover:text-white hover:bg-white/10'
                     }`}
                   >
-                    {editingProject.featured ? <Star className="w-3.5 h-3.5" /> : <StarOff className="w-3.5 h-3.5" />}
                     {editingProject.featured ? 'Featured' : 'Not Featured'}
                   </button>
-                  <span className="text-[10px] text-neutral-600 font-mono">Shows on landing page</span>
                 </div>
 
                 {/* About / Result */}

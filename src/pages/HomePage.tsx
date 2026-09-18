@@ -17,7 +17,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
     fetchProjects().then(setProjects).catch(() => {});
   }, []);
 
-  const featuredProjects = projects.filter(p => p.featured).slice(0, 3);
+  // Prioritize featured builds, then backfill with latest builds so 3 cards always display
+  const featured = projects.filter(p => p.featured);
+  const nonFeatured = projects.filter(p => !p.featured);
+  const featuredProjects = [...featured, ...nonFeatured].slice(0, 3);
   const totalProjects = projects.length;
 
   return (

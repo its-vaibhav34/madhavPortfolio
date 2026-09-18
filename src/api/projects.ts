@@ -1,11 +1,27 @@
 import { Project } from '../types';
 import { INITIAL_PROJECTS } from '../data/projects';
 
-const API_BASE = '/api/projects';
+export const BACKEND_URL = ((import.meta as any).env?.VITE_API_URL || 'https://madhavportfolio.onrender.com').replace(/\/$/, '');
+const API_BASE = `${BACKEND_URL}/api/projects`;
 
 /**
- * Fetch all projects from the MongoDB backend API.
- * Gracefully falls back to INITIAL_PROJECTS if the backend server is temporarily starting up.
+ * Check backend health & database provider info
+ */
+export async function checkBackendHealth(): Promise<{
+  status: string;
+  database: string;
+  provider: string;
+}> {
+  const res = await fetch(`${BACKEND_URL}/api/health`);
+  if (!res.ok) {
+    throw new Error(`Health check failed with status ${res.status}`);
+  }
+  return await res.json();
+}
+
+/**
+ * Fetch all projects from the MongoDB Atlas backend API.
+ * Gracefully falls back to INITIAL_PROJECTS if the backend server is temporarily starting up or sleeping.
  */
 export async function fetchProjects(options?: {
   featured?: boolean;
@@ -40,7 +56,7 @@ export async function fetchProjects(options?: {
 }
 
 /**
- * Fetch a single project by slug from the MongoDB backend.
+ * Fetch a single project by slug from the MongoDB Atlas backend.
  */
 export async function fetchProjectBySlug(slug: string): Promise<Project | null> {
   try {
@@ -58,7 +74,7 @@ export async function fetchProjectBySlug(slug: string): Promise<Project | null> 
 }
 
 /**
- * Create a new project in MongoDB.
+ * Create a new project in MongoDB Atlas.
  */
 export async function createProject(project: Partial<Project>): Promise<Project> {
   const res = await fetch(API_BASE, {
@@ -76,7 +92,7 @@ export async function createProject(project: Partial<Project>): Promise<Project>
 }
 
 /**
- * Update an existing project by ID in MongoDB.
+ * Update an existing project by ID in MongoDB Atlas.
  */
 export async function updateProject(id: string, project: Partial<Project>): Promise<Project> {
   const res = await fetch(`${API_BASE}/${encodeURIComponent(id)}`, {
@@ -94,7 +110,7 @@ export async function updateProject(id: string, project: Partial<Project>): Prom
 }
 
 /**
- * Delete a project by ID from MongoDB.
+ * Delete a project by ID from MongoDB Atlas.
  */
 export async function deleteProject(id: string): Promise<void> {
   const res = await fetch(`${API_BASE}/${encodeURIComponent(id)}`, {
@@ -108,7 +124,7 @@ export async function deleteProject(id: string): Promise<void> {
 }
 
 /**
- * Reset all projects in MongoDB to the default seed builds.
+ * Reset all projects in MongoDB Atlas to the default seed builds.
  */
 export async function resetProjects(): Promise<Project[]> {
   const res = await fetch(`${API_BASE}/reset`, {
