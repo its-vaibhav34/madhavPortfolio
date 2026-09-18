@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    color: #f5f5f5;
+    background-color: #0a0a0a;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+
+  h1, h2, h3, .font-heading {
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+  }
+}
+
+/* Outlined / stroke text effect for hero */
+.text-outline {
+  -webkit-text-stroke: 2px #f5f5f5;
+  color: transparent;
+}
+
+.text-outline-thin {
+  -webkit-text-stroke: 1.5px #f5f5f5;
+  color: transparent;
+}
+
+/* Subtle noise grain texture */
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* Code editor line numbers */
+.code-line-number {
+  color: #4a4a5a;
+  user-select: none;
+  min-width: 2.5rem;
+  text-align: right;
+  padding-right: 1rem;
+  border-right: 1px solid #1e1e2e;
+  margin-right: 1rem;
+}
+
+/* Custom scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a2a3a;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3a4a;
+}
+
+/* Subtle glow effect for cards */
+.card-glow:hover {
+  box-shadow: 0 0 30px rgba(16, 185, 129, 0.06), 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Animate on scroll fade-in */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+/* Stats counter animation */
+@keyframes countPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Syntax highlighting colors for code blocks */
+.syntax-keyword { color: #c678dd; }
+.syntax-type { color: #e5c07b; }
+.syntax-string { color: #98c379; }
+.syntax-comment { color: #5c6370; font-style: italic; }
+.syntax-function { color: #61afef; }
+.syntax-number { color: #d19a66; }
+.syntax-preprocessor { color: #e06c75; }
+.syntax-operator { color: #56b6c2; }

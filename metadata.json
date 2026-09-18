@@ -1,0 +1,6 @@
+{
+  "name": "Alex Chen — Hardware & IoT Portfolio",
+  "description": "A minimal, clean personal portfolio showcasing IoT, embedded systems, electronics, and robotics projects.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
