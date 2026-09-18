@@ -39,10 +39,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         <div className="mb-10 select-none">
           <h1 className="font-heading font-bold tracking-tighter leading-[0.9]">
             <span className="block text-[clamp(3.5rem,12vw,9rem)] text-white">
-              MADHAV
+              CYBER
             </span>
             <span className="block text-[clamp(3.5rem,12vw,9rem)] text-outline">
-              SHARMA
+              CIRCUIT
             </span>
             <span className="block text-[clamp(3.5rem,12vw,9rem)] text-white">
               LAB

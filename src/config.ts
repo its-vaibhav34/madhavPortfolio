@@ -9,7 +9,7 @@ export const profileConfig: ProfileConfig = {
     "I'm an Electronics & Communication Engineering student who loves turning breadboard ideas into working hardware.",
     "From blinking LEDs to Bluetooth-controlled cars — every build teaches something new. This is my lab notebook, open to the world."
   ],
-  githubUrl: "https://github.com/madhav-sharma",
+  githubUrl: "https://github.com/madhavsharma69",
   exploring: [
     "Arduino",
     "ESP32",

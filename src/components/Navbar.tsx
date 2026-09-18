@@ -31,10 +31,10 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
           </div>
           <div className="flex items-center space-x-2">
             <span className="font-heading font-bold tracking-tight text-sm text-white uppercase">
-              {profileConfig.name}
+              CYBER CIRCUIT LAB
             </span>
             <span className="text-[10px] font-mono text-neutral-500 tracking-wider hidden sm:inline">
-              ECE STUDENT
+              
             </span>
           </div>
         </a>

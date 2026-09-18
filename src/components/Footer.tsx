@@ -8,7 +8,7 @@ export const Footer: React.FC = () => {
     <footer className="w-full border-t border-white/5 mt-20 py-8 text-[10px] sm:text-xs text-neutral-600 font-mono tracking-wider">
       <div className="max-w-6xl mx-auto px-6 sm:px-10 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="text-center sm:text-left">
-          {profileConfig.name.toUpperCase()} &copy; {currentYear} &mdash; BUILT WITH CURIOSITY AND A LOT OF DEBUGGING
+          CYBER CIRCUIT LAB &copy; {currentYear} &mdash; BUILT WITH CURIOSITY AND A LOT OF DEBUGGING
         </div>
 
         <div className="flex items-center space-x-6">
